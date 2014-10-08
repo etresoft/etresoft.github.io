@@ -1,0 +1,15 @@
+# Site settings
+title: EtreBlog
+email: info@etresoft.com
+description: > # this means to ignore newlines until "baseurl:"
+  Talking aloud to myself. A habit of the old: they choose the wisest person 
+  present to speak to; the long explanations needed by the young are 
+  wearying. -- Gandalf
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://etreblog2.etresoft.com" # the base hostname & protocol for your site
+copyright: Copyright © 2014 John Daniel. All rights reserved.
+twitter_username: etresoft
+github_username: etresoft
+
+# Build settings
+markdown: kramdown
