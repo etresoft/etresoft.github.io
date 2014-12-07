@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "Another test!"
+date:   2014-12-06 21:56:58
+categories: jekyll update
+---
+Another test of [etresoft].
+
+[etresoft]:      http://etresoft.com
