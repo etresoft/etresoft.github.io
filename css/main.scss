@@ -3,9 +3,7 @@
 ---
 @charset "utf-8";
 
-
-
-// Our variables
+// Variables
 $base-font-family: Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
 $small-font-size:  $base-font-size * 0.875;
@@ -13,11 +11,23 @@ $base-line-height: 1.5;
 
 $spacing-unit:     30px;
 
-$text-color:       #111;
+$text-color:       #006644;
 $background-color: #ffffcc;
+
+$header-background-color: #ccffcc;
+
+$title-font-family: Helvetica, Arial, sans-serif;
+$title-font-size:   24px;
+$title-font-weight: 500;
+$title-text-color: #77aa77;
+
+$footer-font-size: 12px;
+
 $brand-color:      #006644;
 $alternate-color:  #ccffcc;
 $border-color:     #ddddaa;
+
+
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
@@ -27,26 +37,25 @@ $on-palm:          600px;
 $on-laptop:        800px;
 $content-width:    690px;
 
-
-
 // Using media queries with like this:
-// @include media-query($palm) {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
+// @include media-query($palm) 
+//   {
+//   .wrapper 
+//     {
+//     padding-right: $spacing-unit / 2;
+//     padding-left: $spacing-unit / 2;
 //     }
-// }
-@mixin media-query($device) {
-    @media screen and (max-width: $device) {
-        @content;
+//   }
+@mixin media-query($device) 
+  {
+  @media screen and (max-width: $device)
+    {
+    @content;
     }
-}
-
-
+  }
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
-        "base",
-        "layout",
-        "syntax-highlighting"
-;
+  "base",
+  "layout",
+  "syntax-highlighting";
