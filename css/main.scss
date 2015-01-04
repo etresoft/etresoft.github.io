@@ -27,12 +27,11 @@ $brand-color:      #006644;
 $alternate-color:  #ccffcc;
 $border-color:     #ddddaa;
 
-
-
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
 
+$iphone:           480px;
 $on-palm:          600px;
 $on-laptop:        800px;
 $content-width:    690px;
@@ -48,7 +47,15 @@ $content-width:    690px;
 //   }
 @mixin media-query($device) 
   {
-  @media screen and (max-width: $device)
+  @media screen and (max-device-width: $device)
+    {
+    @content;
+    }
+  }
+
+@mixin media-query-landscape($device) 
+  {
+  @media screen and (max-device-width: $device) and (orientation: landscape)
     {
     @content;
     }

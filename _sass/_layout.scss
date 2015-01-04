@@ -1,24 +1,112 @@
-/* Header */
-.header 
+/* Modify core HTML elements. */
+
+/* Ajust the body. */
+body
   {
-  border-bottom: 1px solid $border-color;
-  min-height: 91px;
-  background-color: $header-background-color;
+  /* Make the text a nice dark green. */
+  color: #004400;
+
+  /* Use a nice, tight font. */
+  font-family: Helvetica, Arial, sans-serif;
+
+  background-color: #ffffcc;
+  }
+
+/* Turn off image borders. */
+img
+  {
+  border: none;
+  }
+
+/* Links. */
+a
+  {
+  /* Make the text a nice sea green. */
+  color: #006644;
+  }
+
+/* Hover links. */
+a:hover
+  {
+  /* Use a brigher green for this one. */
+  color: #00aa00;
+  }
+
+/* Active links. */
+a:active
+  {
+  /* Make the text a nice dark green. */
+  color: #004400;
+
+  /* While the button is pressed, keep the underline and press the link. */
+  text-decoration: underline;
+  border-width: 1px;
+  }
+
+/* Header */
+.header
+  {
+  border-bottom: 1px solid #ddddaa;
+  background-color: #ccffcc;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   }
 
+/* Header subtitle. */
+.header h1
+  {
+  width: 50%;
+  margin-right: 1em;
+  float: right;
+  line-height: 1.34em;
+  text-align: right;
+  color: #77aa77;
+  font-weight: 500;
+  }
+
+.header h1 img
+  {
+  float: right;
+  vertical-align: middle;
+  margin-left: 10px;
+  margin-right: 0px;
+  height: 1.34em;
+  }
+
 /* Logo. */
 .logo
   {
   float: left;
-  width: 165px;
-  height: 68px;
+  height: 65px;
   margin: 10px;
   }
+  
+@include media-query($iphone)
+  {
+  .header h1
+    {
+    font-size: 16px;
+    line-height: 30px;
+    width: 100px;
+    margin-right: 80px;
+    margin-bottom: 0px;
+    }
 
+  .header h1 img
+    {
+    height: 30px;
+    }
+    
+  .logo
+    {
+    width: 100px;
+    height: 41px;
+    margin: 5px;
+    }
+  }
+      
 /* Social media. */
 .social-media-list
   {
@@ -52,31 +140,10 @@
         }
       }
     }
-  }
-  
-/* Page title. */
-.header 
-  {
-  h1 
+    
+  @include media-query($iphone)
     {
-    float: right;
-    margin: 24px;
-
-    color: $title-text-color;
-    line-height: $base-line-height;
-    font-family: $title-font-family;
-    font-size: $title-font-size;
-    font-weight: $title-font-weight;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 4px;
-    padding-right: 4px;
-
-    background-color: $alternate-color;
-    border-radius: 4px;
-
-    transition: background-color .5s;
-    -webkit-transition: background-color .5s;
+    top: 12px;
     }
   }
   
@@ -84,47 +151,134 @@
 .content
   {
   position: absolute;
-  top: 92px;
+  top: 86px;
   left: 0px;
   right: 0px;
-  bottom: 50px;
+  bottom: 45px;
   overflow: scroll;
   overflow-x: none;
   overflow-y: scroll;
   
-  padding: 18px;
+  padding: 1em;
+  }
+  
+@include media-query($iphone)
+  {
+  .content
+    {
+    position: static;
+    margin-top: 54px;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    padding: 5px;
+    }
+  }
+  
+.post-list h2
+  {
+  margin-top: 0;
+  margin-bottom: 0;
+  }
+  
+ul.post-list
+  {
+  margin-top: 0;
+  padding-left: 0px;
+  margin-left: 0px;
+  list-style-type: none;
+  }
+  
+.post-list .post-meta
+  {
+  margin-left: 1em;
+  }
+  
+.post-list li
+  {
+  margin-bottom: 1em;
+  }
+  
+.post-header .post-meta,
+h2.post-title
+  {
+  margin-top: 0;
+  margin-bottom: 0;
+  }
+  
+.post-header .post-meta
+  {
+  margin-left: 1em;
   }
   
 /* Footer. */
 .footer 
   {
   position: fixed;
-  border-top: 1px solid $grey-color-light;
-  height: 50px;
+  border-top: 1px solid #e8e8e8;
+  height: 45px;
   left: 0px;
   right: 0px;
   bottom: 0px;
-  
-  .quote
+  color: #006644;
+  font-weight: 300;
+  font-size: 12px;
+  display: table;
+  width: 100%;
+  }
+
+.footer p
+  {
+  display: table-cell;
+  vertical-align: middle;
+  margin: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  }
+
+.footer .quote
+  {
+  font-style: italic;
+  }
+
+.footer .copyright
+  {
+  text-align: right;
+  width: 380px;
+  }
+
+@include media-query($iphone)
+  {
+  /* Footer. */
+  .footer 
     {
-    position: absolute;
-    width: 50%;
-    left: 0px;
-    top: 0px;
-    padding: 10px;
-    font-size: $footer-font-size;
+    position: static;
+    display: block;
+    height: auto;
     }
-    
-  .copyright
+
+  .footer p
     {
-    position: absolute;
-    width: 50%;
-    right: 0px;
-    top: 0px;
-    padding: 10px;
-    font-size: $footer-font-size;
-    text-align: right;
-    vertical-align: middle;
-    line-height: 30px;
+    display: block;
+    margin: 1em;
+    margin-left: .5em;
+    margin-right: .5em;
+    }
+
+  .footer .quote
+    {
+    font-style: italic;
+    text-align: center;
+    float: none;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    }
+
+  .footer .copyright
+    {
+    text-align: center;
+    float: none;
+    width: auto;
     }
   }

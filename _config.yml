@@ -6,8 +6,9 @@ description: > # this means to ignore newlines until "baseurl:"
   present to speak to; the long explanations needed by the young are 
   wearying.</em> -- Gandalf
 baseurl: "" # the subpath of your site, e.g. /blog/
+host: pandora.local
 url: "http://etreblog2.etresoft.com" # the base hostname & protocol for your site
-copyright: Copyright © 2015 John Daniel. All rights reserved.
+copyright: Copyright © 1996-2015, Etresoft and John Daniel. All rights reserved.
 twitter_username: etresoft
 github_username: etresoft
 
