@@ -22,6 +22,7 @@ Much of Docker’s popularity comes from the DevOps and Cloud communities. They 
 This is not a basic how-to for Docker. You can read that anywhere. This is an opportunity to learn from someone else’s mistakes. I have seen short blog posts that try to make Docker look easy. This is not going to be one of those. This is long and makes Docker look hard. Rest assured, I am glossing over many, many important details. Docker is more difficult than I make it appear here.
 
 # Using Docker
+
 ## First impression: 
 Docker is a great, resource-friendly way to run Linux services on a Mac. No more hacking around with launchd scripts and dealing with Apple’s caprices with Apache, PHP, & Perl.
 
