@@ -22,9 +22,11 @@ Much of Docker’s popularity comes from the DevOps and Cloud communities. They 
 This is not a basic how-to for Docker. You can read that anywhere. This is an opportunity to learn from someone else’s mistakes. I have seen short blog posts that try to make Docker look easy. This is not going to be one of those. This is long and makes Docker look hard. Rest assured, I am glossing over many, many important details. Docker is more difficult than I make it appear here.
 
 # Using Docker
-## First impression: Docker is a great, resource-friendly way to run Linux services on a Mac. No more hacking around with launchd scripts and dealing with Apple’s caprices with Apache, PHP, & Perl.
+## First impression: 
+Docker is a great, resource-friendly way to run Linux services on a Mac. No more hacking around with launchd scripts and dealing with Apple’s caprices with Apache, PHP, & Perl.
 
-## Second impression: Not all services are equal. I need to build some heavy-duty geospatial software. One day, I might want to deploy certain parts as services that can scale. But for now, I just want something and I’m not entirely sure what will work. Or rather, I just wanted something in June. This is October and I am just now working on building my geospatial stack and evaluating solutions using my new VM having wasted lots of time trying to get Docker working.
+## Second impression: 
+Not all services are equal. I need to build some heavy-duty geospatial software. One day, I might want to deploy certain parts as services that can scale. But for now, I just want something and I’m not entirely sure what will work. Or rather, I just wanted something in June. This is October and I am just now working on building my geospatial stack and evaluating solutions using my new VM having wasted lots of time trying to get Docker working.
 
 # So where did Docker go wrong?
 It didn’t. I was just (unwillingly) misusing it. Docker is not appropriate for development. If you ever need to look up how to run bash or vi in a Docker container, that is a good sign that you are going down the wrong path. 
