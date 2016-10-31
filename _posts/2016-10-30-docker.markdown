@@ -6,13 +6,13 @@ categories: docker
 ---
 
 
-Inspiration
+# Inspiration
 I recently read a post by [AshFurrow][ashfurrow] on using Docker to play with Swift on Linux. I expressed some concern about using Docker for development. One thing led to another. Finally Ash issued a challenge for me to do something more productive and meaningful than just complain on Twitter. I like challenges. They make me engage in critical self-review and sometimes spur me to take some action that I probably should have done a long time ago.
 
-Background
+# Background
 Until a few months ago, I had never used Docker. I had used VMs for many years. I had tried Vagrant and wasn’t impressed. But the IT dept. at my new job wanted to move everything to Docker as a way to replace their decrepit, home-grown computing cluster. I didn’t think the geospatial stack I needed to build was appropriate for Docker, but I had never used it, so I was game to try it out.
 
-What is Docker?
+# What is Docker?
 Docker is not a VM. That is an important distinction. The current version of [Mac Docker][dockermac] uses the Apple hypervisor framework, so it runs with much less overhead than a VM. Unlike a true VM like [Parallels][parallels] or [VMWare][vmware], Docker doesn’t need a kernel extension. Using the hypervisor framework doesn’t even require root access. There is a new VM app called [Veertu][veertu] on the Mac App Store that uses the hypervisor framework and even runs in the sandbox. 
 
 In theory, you could put so much into your Docker container that it effectively becomes a VM. But if you are doing that, it is far easier and faster to just use a VM. Docker is designed to run a service, a single service, in the foreground. Linux is involved only as a piece of infrastructure useful to bootstrap your service.
@@ -21,17 +21,17 @@ Much of Docker’s popularity comes from the DevOps and Cloud communities. They 
 
 This is not a basic how-to for Docker. You can read that anywhere. This is an opportunity to learn from someone else’s mistakes. I have seen short blog posts that try to make Docker look easy. This is not going to be one of those. This is long and makes Docker look hard. Rest assured, I am glossing over many, many important details. Docker is more difficult than I make it appear here.
 
-Using Docker
-First impression: Docker is a great, resource-friendly way to run Linux services on a Mac. No more hacking around with launchd scripts and dealing with Apple’s caprices with Apache, PHP, & Perl.
+# Using Docker
+## First impression: Docker is a great, resource-friendly way to run Linux services on a Mac. No more hacking around with launchd scripts and dealing with Apple’s caprices with Apache, PHP, & Perl.
 
-Second impression: Not all services are equal. I need to build some heavy-duty geospatial software. One day, I might want to deploy certain parts as services that can scale. But for now, I just want something and I’m not entirely sure what will work. Or rather, I just wanted something in June. This is October and I am just now working on building my geospatial stack and evaluating solutions using my new VM having wasted lots of time trying to get Docker working.
+## Second impression: Not all services are equal. I need to build some heavy-duty geospatial software. One day, I might want to deploy certain parts as services that can scale. But for now, I just want something and I’m not entirely sure what will work. Or rather, I just wanted something in June. This is October and I am just now working on building my geospatial stack and evaluating solutions using my new VM having wasted lots of time trying to get Docker working.
 
-So where did Docker go wrong?
+# So where did Docker go wrong?
 It didn’t. I was just (unwillingly) misusing it. Docker is not appropriate for development. If you ever need to look up how to run bash or vi in a Docker container, that is a good sign that you are going down the wrong path. 
 
 In fact, while most Docker containers do include bash, they sure won’t have anything else you might expect, like locales, Unicode support, or even a command prompt. Docker containers might not have a text editor like vi either. The mere presence of vi in a container might be a good sign that the container you are using is designed for debugging rather than running at scale. It might not be reliable.
 
-How to use Docker?
+# How to use Docker?
 Ideally, you want to use some common service that has an official container on [Docker Hub][dockerhub]. Those are easy to build and deploy. If you don’t have an official container, beware. You can still proceed, but every step towards a custom configuration brings more time expended and a greater risk that the container you slave over this week might not work next week.
 
 Generally, you start with a Dockerfile. This defines the software infrastructure in your virtual environment that you will need. Then you build a container from your Dockerfile. Next, you deploy that container in Docker hosted locally on your Mac. Maybe that’s all you need. Or maybe you need to deploy to production in a privately hosted [Rancher][rancher] environment, or maybe in [AWS][aws], [Google][google], or [Azure][azure]. 
@@ -40,7 +40,7 @@ It is important that your Dockerfile be a self-hosting build script. You can run
 
 This is a key plot point if you are building some kind of custom configuration and hacking around inside your container. If you are manually doing apt-get or building software, all of that work will be blown away at some point. It has to be in the Dockerfile in order to be reproduced. You can cheat and commit changes to your container. But that is a true cheat code because there is no guarantee you will ever be able to rebuild that container if you need to update it or change it.
 
-The DockerFile
+# The DockerFile
 The first thing to worry about is the first line of the Docker file. This defines what distro and what version your container will be based on. All the issues that apply to picking a Linux version and distro apply here too. If you pick a version too new, some of the software you need won’t build and might not be well-tested. If you pick a version too old, some of the software you need won’t install. Sometimes apt-get will work and sometimes it won’t. There is no way to tell unless you try it - over, and over, and over again.
 
 I found containers based on Ubuntu to be reliable. For the geospatial software I need, version 14.04 is generally too old. I found containers based on Debian to be unreliable. Sometimes I would just get random network errors trying to pull from package repositories. 
@@ -59,14 +59,14 @@ Don’t forget security. Are you basing your container on someone else’s conta
 
 Finally, you actually want to run something. There are many ways to actually execute your service, depending on the complexity of your container hierarchy. One important plot point is how to execute the CMD command. Always use the [] form instead of the “” form. When just using quotes, your command is run via sh. Your service will not shut down cleanly when you stop your container if you run via sh. Always use the [] form to run your command directly so it will hear your signals.
 
-Running your Docker container
+# Running your Docker container
 It doesn’t take long to develop expertise in building a Docker container. Once you have attempted 300-400 builds, it gets pretty easy. But just because its builds (finally!) doesn’t mean it will run properly. 
 
 One of the most basic initial debug steps is run interactively. Usually you can just add the “-i -t” flags and add “/bin/bash” to the end of the Docker command to run bash in your environment and try it out. Depending on your container and what containers you based it on, you may not have most of what you expect in bash, like a prompt, a locale, or an environment. 
 
 Another thing you can do is map host paths into the container. This is the only way to add persistent storage to a container. Just specify the path in the container and Docker will take over that path and map it to the host. At one point, I tried mapping /opt to the host and installed my geospatial stack persistently. I had one container that just built everything and then another that would use that path at runtime. But building software in Docker is a royal pain and I quickly abandoned that idea.
 
-What good is Docker then?
+# What good is Docker then?
 Most of this is a “lessons-learned” document. Docker isn’t a panacea for all problems. But for the things that Docker does well, it does very well. 
 
 One of the nice features of Docker is the ability to establish links between containers. Give one container a name and link it to another container. That second container can then refer to the first container using that name. No DNS to configure. No need to expose middle-tier services externally. Suppose you have some node REST services you want to consume from Apache. You don’t need to worry about hard-coding port numbers. You aren’t sharing any containers between services. Just have every node server listen on port 80. Then have Apache refer to them by name with no port. For extra credit, setup a reverse regex proxy that will map any REST path on the Apache container onto its matching node container. 
