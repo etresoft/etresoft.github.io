@@ -8,7 +8,7 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog/
 host: pandora.local
 url: "http://etreblog.etresoft.com" # the base hostname & protocol for your site
-copyright: Copyright © 1996-2016, Etresoft and John Daniel. All rights reserved.
+copyright: Copyright © 2017, Etresoft, Inc. All rights reserved.
 twitter_username: etresoft
 github_username: etresoft
 
