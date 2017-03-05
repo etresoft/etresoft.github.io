@@ -9,6 +9,7 @@ categories: docker
 # Inspiration
 I recently read a post by [AshFurrow][ashfurrow] on using Docker to play with Swift on Linux. I expressed some concern about using Docker for development. One thing led to another. Finally Ash issued a challenge for me to do something more productive and meaningful than just complain on Twitter. I like challenges. They make me engage in critical self-review and sometimes spur me to take some action that I probably should have done a long time ago.
 
+
 # Background
 Until a few months ago, I had never used Docker. I had used VMs for many years. I had tried Vagrant and wasn’t impressed. But the IT dept. at my new job wanted to move everything to Docker as a way to replace their decrepit, home-grown computing cluster. I didn’t think the geospatial stack I needed to build was appropriate for Docker, but I had never used it, so I was game to try it out.
 
