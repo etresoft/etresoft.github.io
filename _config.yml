@@ -14,3 +14,6 @@ github_username: etresoft
 
 # Build settings
 markdown: kramdown
+
+# Fix timezone.
+future: true
